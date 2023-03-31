@@ -56,6 +56,7 @@ jobs:
 
       - name: Start the server
         run: npm run start
+        background: true
 
   wait-for-server:
     name: Wait for Server
@@ -64,6 +65,7 @@ jobs:
     steps:
       - name: Wait for server to start
         run: npx wait-on http://localhost:3000
+        background: true
 
   integration-tests:
     name: Integration Tests
