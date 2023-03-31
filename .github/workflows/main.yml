@@ -73,7 +73,7 @@ jobs:
         run: npm run build
 
       - name: Deploy to production
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
+        uses: google-github-actions/setup-gcloud@v0
         with:
           version: '345.0.0'
           project_id: ${{ secrets.GCP_PROJECT_ID }}
