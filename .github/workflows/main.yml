@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, dev]
   pull_request:
-    branches: [main]
+    branches: [main, dev]
 
 env:
   NODE_ENV: test
@@ -27,7 +27,7 @@ jobs:
           VALIDATE_ALL_CODEBASE: true
           DEFAULT_BRANCH: dev
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SUPER_LINTER_RULES_PATH: "semistandard"
+          LINTER_RULES_PATH: "semistandard"
 
   unit-tests:
     name: Unit Tests
