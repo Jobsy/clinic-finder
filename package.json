@@ -2,7 +2,7 @@
   "name": "scratch_financial",
   "version": "1.0.0",
   "description": "",
-  "main": "src/app.js",
+  "main": "src/bin/www",
   "engines": {
     "node": "14.x"
   },
