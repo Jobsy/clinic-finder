@@ -13,11 +13,6 @@ jobs:
   super-linter:
     name: Linting
     runs-on: ubuntu-latest
-    
-    strategy:
-      matrix:
-        node-version: [12.x, 14.x, 16.x]
-        os: [ubuntu-latest, macos-latest, windows-latest]
         
     steps:
       - name: Checkout code
