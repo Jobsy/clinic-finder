@@ -1,4 +1,4 @@
-
+/* eslint-disable no-undef */
 const assert = require('assert');
 const clinicData = require('../data/clinicData');
 
@@ -6,10 +6,6 @@ let clinics;
 
 beforeAll(() => {
   clinics = clinicData;
-});
-
-afterAll(() => {
-  // Clean up any resources used by the test
 });
 
 describe('clinicData', () => {
@@ -24,7 +20,6 @@ describe('clinicData', () => {
   });
 });
 
-
 describe('clinicData', () => {
   it('should return an array of clinics', (done) => {
     assert(Array.isArray(clinics), 'result is not an array');
@@ -38,11 +33,11 @@ describe('clinicData', () => {
     const mockHttps = {
       get: jest.fn().mockImplementation((url, callback) => {
         const mockRes = {
-          on: jest.fn(),
+          on: jest.fn()
         };
         callback(mockRes);
         mockRes.on.mock.calls[0][1]({ message: 'Error message' });
-      }),
+      })
     };
 
     mockHttps.get.mockReturnValue({ on: jest.fn() });
@@ -59,4 +54,3 @@ describe('clinicData', () => {
     expect(clinics).toHaveLength(0);
   });
 });
-
