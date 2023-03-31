@@ -1,6 +1,19 @@
 
 const https = require('https');
-const debug = require('debug')('fetch-clinics');
+const winston = require('winston');
+
+// Configure winston logger
+const logger = winston.createLogger({
+  level: 'info',
+  format: winston.format.combine(
+    winston.format.timestamp(),
+    winston.format.printf(info => `${info.timestamp} ${info.level}: ${info.message}`)
+  ),
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: 'logs/app.log' })
+  ]
+});
 
 const fetchClinics = () => {
   const clinics = [];
@@ -24,11 +37,11 @@ const fetchClinics = () => {
       // Listen for the 'end' event, parse the data and add it to the clinics array
       res.on('end', () => {
         clinics.push(...JSON.parse(data));
-        debug(`Fetched clinics from ${url}`);
+        logger.info(`Fetched clinics from ${url}`);
       });
     }).on('error', (err) => {
       // Listen for 'error' events and log any errors that occur
-      debug(`Error fetching clinics from ${url}: ${err.message}`);
+      logger.error(`Error fetching clinics from ${url}: ${err.message}`);
     });
   });
 
