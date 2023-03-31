@@ -1,22 +1,19 @@
 
-function searchClinics ({ name, state, availability }, clinicsData) {
+function searchClinics({ name, state, availability }, clinicsData) {
   let result = clinicsData;
 
-  // If the name query parameter is present, filter the data by clinics that contain the name in their name or clinicName property
   if (name) {
     const nameRegex = new RegExp(name, 'i');
     result = result.filter((clinic) => nameRegex.test(clinic.name || clinic.clinicName));
   }
 
-  // If the state query parameter is present, filter the data by clinics located in the state specified
   if (state) {
     result = result.filter((clinic) => {
-      const clinicState = clinic.stateName || clinic.stateCode;
-      return clinicState.toLowerCase() === state.toLowerCase();
+      let clinicState = clinic.stateName || clinic.stateCode 
+      return clinicState.toLowerCase() === state.toLowerCase()
     });
   }
 
-  // If the availability query parameter is present, filter the data by clinics that have availability during the specified time
   if (availability) {
     result = result.filter((clinic) => {
       const { from, to } = clinic.availability || clinic.opening || {};
@@ -24,7 +21,8 @@ function searchClinics ({ name, state, availability }, clinicsData) {
     });
   }
 
-  return result; // Return the filtered clinics data
+  return result;
 }
 
 module.exports = searchClinics;
+
