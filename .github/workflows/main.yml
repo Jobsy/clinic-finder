@@ -58,28 +58,3 @@ jobs:
       - name: Run integration tests
         run: npm run test
 
-  build:
-    name: Build and deploy
-    runs-on: ubuntu-latest
-    needs: [super-linter, unit-tests, integration-tests]
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build project
-        run: npm run build
-
-      - name: Deploy to production
-        uses: google-github-actions/setup-gcloud@v0
-        with:
-          version: '345.0.0'
-          project_id: ${{ secrets.GCP_PROJECT_ID }}
-          service_account_key: ${{ secrets.GCP_SA_KEY }}
-        env:
-          CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE: ${{ secrets.GCP_SA_KEY }}
-      - name: Deploy to production
-        run: |
-          gcloud app deploy --quiet --stop-previous-version
