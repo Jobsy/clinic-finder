@@ -5,6 +5,7 @@ The application is built using Node.js and Express, and it uses a JSON file to s
 
 
 ## Getting Started
+### Running the App via Local
 To get started with the application, you'll need to have Node.js installed on your computer. You can download it from the official website: https://nodejs.org/en/.
 
 After installing Node.js, you can clone the repository and install the dependencies using the following commands:
@@ -19,7 +20,29 @@ Once the dependencies are installed, you can start the application using the fol
 > npm start
 >
 
-This will start the server and make the application available at http://localhost:3000.
+This will start the server and make the application available at http://localhost:3000  
+
+### Running the App via Docker
+>
+> 1. To run the app, you'll need to have Docker installed on your computer. It can be downloaded from the Docker website if not already installed: https://www.docker.com/products/docker-desktop
+> 2. Open a terminal or command prompt   
+> 3. Run the following command to log in to Docker Hub:
+>   ```bash
+>       docker login
+>   ```
+> 4. Enter Docker Hub credentials (username and password) to complete the login process  
+> 5. Once logged in, run the following command to pull the clinic-finder:latest image from your repository:
+>   ```bash
+>       docker pull oluwajoba/clinic-finder:latest
+>   ```
+> 6. Wait for the image to download. This may take a few minutes depending on the internet connection speed  
+> 7. Once the image has finished downloading, run it using the following command:
+>   ```bash
+>       docker run -p 3000:3000 oluwajoba/clinic-finder:latest
+>   ```
+> 8. This will start a new container running the clinic-finder:latest image on port 3000
+>
+That's it! Once they've completed these steps, you should be able to access the application by navigating to http://localhost:3000 in your web browser
 
 
 ## Testing
