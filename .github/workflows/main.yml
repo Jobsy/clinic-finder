@@ -44,10 +44,9 @@ jobs:
       - name: Run unit tests
         run: npm run test
 
-  integration-tests:
-    name: Integration Tests
+  start-server:
+    name: Start Server
     runs-on: ubuntu-latest
-    needs: [super-linter]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -58,8 +57,24 @@ jobs:
       - name: Start the server
         run: npm run start
 
+  wait-for-server:
+    name: Wait for Server
+    runs-on: ubuntu-latest
+    needs: [start-server]
+    steps:
       - name: Wait for server to start
         run: npx wait-on http://localhost:3000
+
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    needs: [super-linter]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install
 
       - name: Run integration tests
         run: npm run test
