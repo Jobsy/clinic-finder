@@ -27,7 +27,7 @@ jobs:
           VALIDATE_ALL_CODEBASE: true
           DEFAULT_BRANCH: dev
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          LINTER_RULES: "semistandard"
+          VALIDATE_SEMISTANDARD_ENABLED: "true"
 
   unit-tests:
     name: Unit Tests
