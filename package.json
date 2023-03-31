@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/app.js",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "start": "node src/bin/www",
     "test:watch": "semistandard --fix && jest --watchAll",
