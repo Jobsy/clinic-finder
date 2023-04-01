@@ -1,3 +1,6 @@
+[![js-semistandard-style](https://raw.githubusercontent.com/standard/semistandard/master/badge.svg)](https://github.com/standard/semistandard)  
+[![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg)](https://github.com/standard/semistandard)  
+
 # Clinic Finder
 This project is a web application that helps users find clinics in their area. Users can search for clinics by name, state, and availability, and the application returns a list of clinics that match their criteria.
 
@@ -44,6 +47,38 @@ This will start the server and make the application available at http://localhos
 >
 That's it! Once they've completed these steps, you should be able to access the application by navigating to http://localhost:3000 in your web browser
 
+### Running the App via Docker Compose
+To run the application using Docker Compose, follow these steps:
+> 1. Clone the repository:
+>   ```bash
+>       git clone https://github.com/oluwajoba/clinic-finder.git
+>   ```
+> 2. Change into the project directory:
+>   ```bash
+>       cd clinic-finder
+>   ```
+> 3. Create a new file called .env in the root directory of the project, and add the following environment variables:
+>   ```bash
+>      PORT=3000
+>   ```
+> 4. Start the application using Docker Compose:
+>   ```bash
+>      docker-compose up
+>   ```
+>   This command will start the application and display the container logs in the terminal. To stop the application, press Ctrl-C
+> 4. Start the application using Docker Compose:
+>   ```bash
+>      docker-compose up
+>   ```
+> 5. You can also run Docker Compose in detached mode using the -d flag:
+>   ```bash
+>      docker-compose up -d
+>   ```
+> 5. This command will start the application in the background and return control to the terminal. To stop the application, run:
+>   ```bash
+>      docker-compose down
+>   ```
+>   This command will stop and remove the containers, networks, and volumes created by docker-compose up
 
 ## Testing
 The application includes a suite of Jest tests that can be run using the following command:
@@ -79,6 +114,27 @@ You can customize this configuration file to fit your specific needs, including 
 
 ## Code Structure
 The application is structured as follows:
+```
+├── __tests__ 
+├── .github
+├── data
+├── logs
+├── node_modules
+├── services  
+├── src  
+│   ├── bin  
+│   │   └── www  
+│   ├── controller  
+│   ├── routes  
+│   └── app.js 
+├── .gitignore 
+├── docker-compose.yml  
+├── Dockerfile 
+├── jest.config.js  
+├── package-lock.json
+├── package.json  
+└── README.md
+```
 >
 > **data/:** Contains the fetched JSON file that stores the clinic data  
 > **services/:** Contains the search function that filters the clinic data based on the user's search criteria  
@@ -89,6 +145,8 @@ The application is structured as follows:
 > **tests/:** Contains the application's tests  
 > **package.json:** Contains the dependencies and other metadata for the application  
 > **README.md:** Contains the documentation for the application  
+>
+>
 >
 
 
