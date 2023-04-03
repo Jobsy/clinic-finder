@@ -68,7 +68,7 @@ jobs:
           image: oluwajoba/clinic-finder:latest
           args: --file=Dockerfile 
             --severity-threshold=low
-            --sarif-file-output=./application/${{ matrix.repository }}/docker.snyk.sarif
+            --sarif-file-output=./${{ matrix.repository }}/docker.snyk.sarif
           sarif: false
           
       # Runs Snyk Container (Container and SCA) analysis and uploads result to Snyk.
