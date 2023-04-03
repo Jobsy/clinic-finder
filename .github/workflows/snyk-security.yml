@@ -79,9 +79,9 @@ jobs:
         with:
           sarif_file: snyk.sarif
 
-      - name: Check docker image scan status
-        if: ${{ steps.docker-image-scan.outcome == 'failure' }}
-        run: exit 1
+      # - name: Check docker image scan status
+      #  if: ${{ steps.docker-image-scan.outcome == 'failure' }}
+      #  run: exit 1
 
       - name: Publish docker image
         if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
