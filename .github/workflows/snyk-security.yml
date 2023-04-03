@@ -65,12 +65,7 @@ jobs:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           DOCKER_BUILDKIT: 1
           IMAGE_TAG: ${GITHUB_SHA::8}
-        run: |
-          docker build -f ${{ matrix.repository }}.Dockerfile \
-            -t $ECR_REGISTRY/${{ matrix.repository }} .
-
-          docker tag $ECR_REGISTRY/${{ matrix.repository }}:${{ env.IMAGE_TAG }} \
-            $ECR_REGISTRY/${{ matrix.repository }}:latest
+        run: docker build -t oluwajoba/clinic-finder .
 
       - name: Security scan on docker image
         uses: snyk/actions/docker@master
@@ -84,6 +79,12 @@ jobs:
             --severity-threshold=low
             --sarif-file-output=${{ matrix.repository }}/docker.snyk.sarif
           sarif: false
+          
+      # Runs Snyk Container (Container and SCA) analysis and uploads result to Snyk.
+      - name: Snyk Container monitor
+        run: snyk container monitor oluwajoba/clinic-finder:latest --file=Dockerfile
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
       - name: Upload sarif file to Github Code Scanning
         if: always()
