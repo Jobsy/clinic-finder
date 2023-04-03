@@ -67,7 +67,7 @@ jobs:
           IMAGE_TAG: ${GITHUB_SHA::8}
         run: |
           docker build -f ${{ matrix.repository }}.Dockerfile \
-            -t $ECR_REGISTRY/${{ matrix.repository }}:${{ env.IMAGE_TAG }} .
+            -t $ECR_REGISTRY/${{ matrix.repository }} .
 
           docker tag $ECR_REGISTRY/${{ matrix.repository }}:${{ env.IMAGE_TAG }} \
             $ECR_REGISTRY/${{ matrix.repository }}:latest
