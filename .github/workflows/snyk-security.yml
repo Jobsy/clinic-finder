@@ -56,11 +56,6 @@ jobs:
 
         # Build the docker image for testing
       - name: Build docker image
-        working-directory: .
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          DOCKER_BUILDKIT: 1
-          IMAGE_TAG: ${GITHUB_SHA::8}
         run: docker build -t oluwajoba/clinic-finder .
 
       - name: Security scan on docker image
@@ -70,7 +65,10 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          image: snyk container test oluwajoba/clinic-finder:latest --file=Dockerfile
+          image: oluwajoba/clinic-finder:latest
+          args: --file=./application/${{ matrix.repository }}.Dockerfile 
+            --severity-threshold=low
+            --sarif-file-output=./application/${{ matrix.repository }}/docker.snyk.sarif
           sarif: false
           
       # Runs Snyk Container (Container and SCA) analysis and uploads result to Snyk.
