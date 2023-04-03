@@ -60,14 +60,14 @@ jobs:
 
         # Build the docker image for testing
       - name: Build docker image
-        working-directory: ./src
+        working-directory: ./
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           DOCKER_BUILDKIT: 1
           IMAGE_TAG: ${GITHUB_SHA::8}
         run: |
           docker build -f ${{ matrix.repository }}.Dockerfile \
-            -t $ECR_REGISTRY/${{ matrix.repository }} .
+            -t $ECR_REGISTRY/${{ matrix.repository }}:${{ env.IMAGE_TAG }} .
 
           docker tag $ECR_REGISTRY/${{ matrix.repository }}:${{ env.IMAGE_TAG }} \
             $ECR_REGISTRY/${{ matrix.repository }}:latest
@@ -80,16 +80,16 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: ${{ steps.login-ecr.outputs.registry }}/${{ matrix.repository }}
-          args: --file=./src/${{ matrix.repository }}.Dockerfile 
+          args: --file=./${{ matrix.repository }}.Dockerfile 
             --severity-threshold=low
-            --sarif-file-output=./src/${{ matrix.repository }}/docker.snyk.sarif
+            --sarif-file-output=./${{ matrix.repository }}/docker.snyk.sarif
           sarif: false
 
       - name: Upload sarif file to Github Code Scanning
         if: always()
         uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: src/${{ matrix.repository }}
+          sarif_file: ./${{ matrix.repository }}
 
       - name: Check docker image scan status
         if: ${{ steps.docker-image-scan.outcome == 'failure' }}
