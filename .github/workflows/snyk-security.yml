@@ -23,32 +23,27 @@ jobs:
         uses: actions/checkout@master
         
       - name: Set up Snyk CLI to check for security issues
-        # Snyk can be used to break the build when it detects security issues.
-        # In this case we want to upload the SAST issues to GitHub Code Scanning
+        # Break the build when it detects security issues and upload the SAST issues to GitHub Code Scanning
         uses: snyk/actions/setup@806182742461562b67788a64410098c9d9b96adb
 
-        # For Snyk Open Source you must first set up the development environment for your application's dependencies
-        # For example for Node
-        #  - uses: actions/setup-node@v3
-        #    with:
-        #      node-version: 16
+        # Set up the development environment for your application's dependencies
       - name: Install dependencies
         run: npm install   
         
       - name: Run Snyk to check for vulnerabilities
         uses: snyk/actions/node@master
         env:
-          # This is where you will need to introduce the Snyk API token created with your Snyk account
+          # Snyk API token created with your Snyk account
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           args: --sarif-file-output=snyk.sarif
 
-        # Runs Snyk Code (SAST) analysis and uploads result into GitHub.
+        # Run Snyk Code (SAST) analysis and uploads result into GitHub
         # Use || true to not fail the pipeline
       - name: Snyk Code test
         run: snyk code test --sarif > snyk-code.sarif || true
 
-        # Runs Snyk Open Source (SCA) analysis and uploads result to Snyk.
+        # Run Snyk Open Source (SCA) analysis and uploads result to Snyk
       - name: Snyk Open Source monitor
         run: snyk monitor --all-projects
         env:
@@ -67,7 +62,7 @@ jobs:
         with:
           image: oluwajoba/clinic-finder:latest --file=Dockerfile
           
-      # Runs Snyk Container (Container and SCA) analysis and uploads result to Snyk.
+      # Run Snyk Container (Container and SCA) analysis and uploads result to Snyk
       - name: Snyk Container monitor
         run: snyk container monitor oluwajoba/clinic-finder:latest --file=Dockerfile
         env:
@@ -78,10 +73,6 @@ jobs:
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: snyk.sarif
-
-      # - name: Check docker image scan status
-      #  if: ${{ steps.docker-image-scan.outcome == 'failure' }}
-      #  run: exit 1
 
       - name: Publish docker image
         if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}

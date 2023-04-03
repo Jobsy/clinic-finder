@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/bin/www",
     "test:watch": "semistandard --fix && jest --watchAll",
-    "test": "jest"
+    "test": "jest",
+    "build": "netilify build"
   },
   "author": "",
   "license": "ISC",
@@ -18,7 +19,9 @@
     "@jest/globals": "^29.5.0",
     "@types/jest": "^29.5.0",
     "jest": "^29.5.0",
+    "netlify-cli": "^13.2.2",
     "semistandard": "^16.0.1",
+    "serverless-http": "^3.2.0",
     "supertest": "^6.3.3",
     "ts-jest": "^29.0.5"
   }
