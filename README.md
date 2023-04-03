@@ -1,5 +1,7 @@
 [![js-semistandard-style](https://raw.githubusercontent.com/standard/semistandard/master/badge.svg)](https://github.com/standard/semistandard)  
-[![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg)](https://github.com/standard/semistandard)  
+[![js-semistandard-style](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg)](https://github.com/standard/semistandard) 
+
+[![Known Vulnerabilities](https://snyk.io/test/github/jobsy/clinic-finder/badge.svg)](https://snyk.io/test/github/jobsy/clinic-finder)
 
 # Clinic Finder
 This project is a web application that helps users find clinics in their area. Users can search for clinics by name, state, and availability, and the application returns a list of clinics that match their criteria.
@@ -25,28 +27,6 @@ Once the dependencies are installed, you can start the application using the fol
 
 This will start the server and make the application available at http://localhost:3000  
 
-### Running the App via Docker
->
-> 1. To run the app, you'll need to have Docker installed on your computer. It can be downloaded from the Docker website if not already installed: https://www.docker.com/products/docker-desktop
-> 2. Open a terminal or command prompt   
-> 3. Run the following command to log in to Docker Hub:
->   ```bash
->       docker login
->   ```
-> 4. Enter Docker Hub credentials (username and password) to complete the login process  
-> 5. Once logged in, run the following command to pull the clinic-finder:latest image from your repository:
->   ```bash
->       docker pull oluwajoba/clinic-finder:latest
->   ```
-> 6. Wait for the image to download. This may take a few minutes depending on the internet connection speed  
-> 7. Once the image has finished downloading, run it using the following command:
->   ```bash
->       docker run -p 3000:3000 oluwajoba/clinic-finder:latest
->   ```
-> 8. This will start a new container running the clinic-finder:latest image on port 3000
->
-That's it! Once they've completed these steps, you should be able to access the application by navigating to http://localhost:3000 in your web browser
-
 ### Running the App via Docker Compose
 To run the application using Docker Compose, follow these steps:
 > 1. Clone the repository:
@@ -66,19 +46,20 @@ To run the application using Docker Compose, follow these steps:
 >      docker-compose up
 >   ```
 >   This command will start the application and display the container logs in the terminal. To stop the application, press Ctrl-C
-> 4. Start the application using Docker Compose:
+> 5. Start the application using Docker Compose:
 >   ```bash
 >      docker-compose up
 >   ```
-> 5. You can also run Docker Compose in detached mode using the -d flag:
+> 6. You can also run Docker Compose in detached mode using the -d flag:
 >   ```bash
 >      docker-compose up -d
 >   ```
-> 5. This command will start the application in the background and return control to the terminal. To stop the application, run:
+> 7. This command will start the application in the background and return control to the terminal. To stop the application, run:
 >   ```bash
 >      docker-compose down
 >   ```
 >   This command will stop and remove the containers, networks, and volumes created by docker-compose up
+That's it! Once they've completed these steps, you should be able to access the application by navigating to http://localhost:3000 in your web browser
 
 ## Testing
 The application includes a suite of Jest tests that can be run using the following command:
