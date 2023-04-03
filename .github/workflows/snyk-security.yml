@@ -63,7 +63,7 @@ jobs:
         run: docker build -t oluwajoba/clinic-finder .
         # Runs Snyk Container (Container and SCA) analysis and uploads result to Snyk.
       - name: Snyk Container monitor
-        run: snyk container monitor oluwajoba/clinic-finder:latest --file=Dockerfile
+        run: snyk container monitor oluwajoba/clinic-finder:latest
 
         # Push the Snyk Code results into GitHub Code Scanning tab
       - name: Upload result to GitHub Code Scanning
