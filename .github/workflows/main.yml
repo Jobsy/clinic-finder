@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main, dev]
+    branches: [main]
   pull_request:
-    branches: [main, dev]
+    branches: [main]
 
 env:
   NODE_ENV: test
@@ -30,7 +30,6 @@ jobs:
           VALIDATE_JAVASCRIPT_STANDARD: false
           IGNORE_GITIGNORED_FILES: true
           VALIDATE_MARKDOWN: false
-          FILTER_REGEX_EXCLUDE: .*github/.*
 
   unit-tests:
     name: Unit Tests
