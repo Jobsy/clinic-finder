@@ -66,7 +66,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: oluwajoba/clinic-finder:latest
-          args: --file=./application/${{ matrix.repository }}.Dockerfile 
+          args: --file=Dockerfile 
             --severity-threshold=low
             --sarif-file-output=./application/${{ matrix.repository }}/docker.snyk.sarif
           sarif: false
