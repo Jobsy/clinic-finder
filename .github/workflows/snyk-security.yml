@@ -59,14 +59,46 @@ jobs:
         run: snyk iac test --report || true
 
         # Build the docker image for testing
-      - name: Build a Docker image
-        run: docker build -t oluwajoba/clinic-finder .
-        # Runs Snyk Container (Container and SCA) analysis and uploads result to Snyk.
-      # - name: Snyk Container monitor
-      #  run: snyk container monitor oluwajoba/clinic-finder:latest --file=Dockerfile
+      - name: Build docker image
+        working-directory: ./application
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          DOCKER_BUILDKIT: 1
+          IMAGE_TAG: ${GITHUB_SHA::8}
+        run: |
+          docker build -f ${{ matrix.repository }}.Dockerfile \
+            -t $ECR_REGISTRY/${{ matrix.repository }}:${{ env.IMAGE_TAG }} .
 
-        # Push the Snyk Code results into GitHub Code Scanning tab
-      - name: Upload result to GitHub Code Scanning
-        uses: github/codeql-action/upload-sarif@v2
-        # with:
-        #  sarif_file: snyk-code.sarif
+          docker tag $ECR_REGISTRY/${{ matrix.repository }}:${{ env.IMAGE_TAG }} \
+            $ECR_REGISTRY/${{ matrix.repository }}:latest
+
+      - name: Security scan on docker image
+        uses: snyk/actions/docker@master
+        id: docker-image-scan
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          image: ${{ steps.login-ecr.outputs.registry }}/${{ matrix.repository }}
+          args: --file=./application/${{ matrix.repository }}.Dockerfile 
+            --severity-threshold=low
+            --sarif-file-output=./application/${{ matrix.repository }}/docker.snyk.sarif
+          sarif: false
+
+      - name: Upload sarif file to Github Code Scanning
+        if: always()
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: application/${{ matrix.repository }}
+
+      - name: Check docker image scan status
+        if: ${{ steps.docker-image-scan.outcome == 'failure' }}
+        run: exit 1
+
+
+      - name: Publish docker image
+        if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
+        run: docker push --all-tags ${{ steps.login-ecr.outputs.registry }}/${{ matrix.repository }}
+
+
+
