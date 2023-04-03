@@ -1,5 +1,6 @@
 
 const express = require('express');
+const serverless = require("serverless-http");
 const clinicRoutes = require('./routes/clinicRoutes');
 
 const app = express();
