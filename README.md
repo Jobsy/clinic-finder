@@ -120,6 +120,12 @@ These jobs are triggered automatically on every push or pull request to the main
 You can customize this configuration file to fit your specific needs, including adding or removing jobs and modifying the steps within each job.
 
 
+## Deployed Site Address
+The application is also deployed on Render at the following address: https://clinic-finder-y8x9.onrender.com/
+> Usage
+> Kindly follow same instructions under API endpoints
+
+
 ## Code Structure
 The application is structured as follows:
 ```
