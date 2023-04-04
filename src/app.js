@@ -7,3 +7,4 @@ const app = express();
 app.use('/clinics', clinicRoutes);
 
 module.exports = app;
+

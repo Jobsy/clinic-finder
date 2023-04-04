@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/bin/www",
     "test:watch": "semistandard --fix && jest --watchAll",
-    "test": "jest"
+    "test": "jest",
+    "build": "netilify build"
   },
   "author": "",
   "license": "ISC",
