@@ -15,6 +15,23 @@ This project is a web application that helps users find clinics in their area. U
 The application is built using Node.js and Express, and it uses a JSON file to store the clinic data. The search functionality is implemented using a JavaScript function that filters the clinic data based on the user's search criteria.
 
 
+## What was Covered and Future Features
+### Simple, clear, readable code:
+> - The code is well-structured, with clear separation of concerns between the **Dockerfile**, the **docker-compose** (to containerize the application), and the application code. It follows the standard Node.js project structure and uses a package.json file to manage dependencies. 
+> - The code follows some standards like using the **semistandard** code style  
+> - The separation of concerns is quite clear in the code. For example, the Dockerfile is used to specify the dependencies and the runtime environment, while the actual application code is kept separate  
+### Correctness:
+> I have tested the application (using **Jest**) to ensure that it works as expected  
+### Security:
+> I have used **SYNK** to check/fix security vulnerabilities in its dependencies, which is a good practice.  
+### Memory efficiency:
+> It's hard to say how the application will behave with large datasets without further testing. However, Node.js is known for its good performance with large datasets.
+### Testing:
+> I have tested the application using **Jest** to ensure that it works as expected, but I haven't specified any metrics to measure the quality of the tests.
+### Documentation:
+> I have documented the code by adding comments and updating the README file. However, we could improve the documentation by adding more detailed comments or generating API documentation from the code.
+
+
 ## Getting Started
 ### Running the App via Local
 To get started with the application, you'll need to have Node.js installed on your computer. You can download it from the official website: https://nodejs.org/en/.
@@ -67,6 +84,7 @@ To run the application using Docker Compose, follow these steps:
 >   This command will stop and remove the containers, networks, and volumes created by docker-compose up
 That's it! Once they've completed these steps, you should be able to access the application by navigating to http://localhost:3000 in your web browser
 
+
 ## Testing
 The application includes a suite of Jest tests that can be run using the following command:
 >
@@ -88,6 +106,7 @@ This endpoint returns a list of clinics based on the user's search criteria. The
 >
 If no query parameters are provided, the endpoint returns all clinics in the data file.
 
+
 ## CI/CD
 This project includes a continuous integration and delivery (CI/CD) pipeline using GitHub Actions. The pipeline is defined in the .github/workflows/ci-cd.yaml file and consists of the following jobs:
 >
@@ -99,6 +118,7 @@ This project includes a continuous integration and delivery (CI/CD) pipeline usi
 These jobs are triggered automatically on every push or pull request to the main branch. They are run on an ubuntu-latest runner, and they each have their own set of steps to execute.
 
 You can customize this configuration file to fit your specific needs, including adding or removing jobs and modifying the steps within each job.
+
 
 ## Code Structure
 The application is structured as follows:
@@ -133,8 +153,6 @@ The application is structured as follows:
 > **tests/:** Contains the application's tests  
 > **package.json:** Contains the dependencies and other metadata for the application  
 > **README.md:** Contains the documentation for the application  
->
->
 >
 
 
