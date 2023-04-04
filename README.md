@@ -93,7 +93,8 @@ This project includes a continuous integration and delivery (CI/CD) pipeline usi
 >
 > The **super-linter:** job runs the Super-Linter to check for linting errors across all files in the repository  
 > The **unit-tests:** job runs the unit tests using Jest for the application  
-> The **build:** job builds and deploys the application to production using Google Cloud Platform  
+> The **build:** job builds and deploys the application to production using Render  
+> The **snyk-security** checks for dependencies vulnerabities
 >
 These jobs are triggered automatically on every push or pull request to the main branch. They are run on an ubuntu-latest runner, and they each have their own set of steps to execute.
 
