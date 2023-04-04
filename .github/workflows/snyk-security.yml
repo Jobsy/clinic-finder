@@ -76,5 +76,5 @@ jobs:
 
       - name: Publish docker image
         if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
-        run: docker push --all-tags registry-host:3000/oluwajoba/clinic-finder
+        run: docker push --all-tags 3000:3000/oluwajoba/clinic-finder
 
