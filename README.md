@@ -122,7 +122,7 @@ You can customize this configuration file to fit your specific needs, including 
 
 ## Deployed Site Address
 The application is also deployed on Render at the following address: https://clinic-finder-y8x9.onrender.com/
-> Usage
+> Usage:
 > Kindly follow same instructions under API endpoints
 
 
