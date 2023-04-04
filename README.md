@@ -3,6 +3,12 @@
 
 [![Known Vulnerabilities](https://snyk.io/test/github/jobsy/clinic-finder/badge.svg)](https://snyk.io/test/github/jobsy/clinic-finder)
 
+[![CI](https://github.com/Jobsy/clinic-finder/actions/workflows/main.yml/badge.svg)](https://github.com/Jobsy/clinic-finder/actions/workflows/main.yml)
+
+[![Render](https://github.com/Jobsy/clinic-finder/actions/workflows/render.yml/badge.svg)](https://github.com/Jobsy/clinic-finder/actions/workflows/render.yml)
+
+[![Snyk Security](https://github.com/Jobsy/clinic-finder/actions/workflows/snyk-security.yml/badge.svg)](https://github.com/Jobsy/clinic-finder/actions/workflows/snyk-security.yml)
+
 # Clinic Finder
 This project is a web application that helps users find clinics in their area. Users can search for clinics by name, state, and availability, and the application returns a list of clinics that match their criteria.
 
