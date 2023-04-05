@@ -60,24 +60,15 @@ To run the application using Docker Compose, follow these steps:
 >   ```bash
 >       cd clinic-finder
 >   ```
-> 3. Create a new file called .env in the root directory of the project, and add the following environment variables:
->   ```bash
->      PORT=3000
->   ```
-> 4. Start the application using Docker Compose:
+> 3. Start the application using Docker Compose:
 >   ```bash
 >      docker-compose up
 >   ```
->   This command will start the application and display the container logs in the terminal. To stop the application, press Ctrl-C
-> 5. Start the application using Docker Compose:
->   ```bash
->      docker-compose up
->   ```
-> 6. You can also run Docker Compose in detached mode using the -d flag:
+> 4. You can also run Docker Compose in detached mode using the -d flag:
 >   ```bash
 >      docker-compose up -d
 >   ```
-> 7. This command will start the application in the background and return control to the terminal. To stop the application, run:
+> 5. This command will start the application in the background and return control to the terminal. To stop the application, run:
 >   ```bash
 >      docker-compose down
 >   ```
